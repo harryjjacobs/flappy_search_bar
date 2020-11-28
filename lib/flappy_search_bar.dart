@@ -144,6 +144,9 @@ class SearchBar<T> extends StatefulWidget {
 
   /// Callback returning the widget corresponding to an Error while searching
   final Widget Function(Error error) onError;
+  
+  /// Whether or not to autofocus the textfield
+  final bool autofocus;
 
   /// Cooldown between each call to avoid too many
   final Duration debounceDuration;
@@ -224,6 +227,7 @@ class SearchBar<T> extends StatefulWidget {
     this.debounceDuration = const Duration(milliseconds: 500),
     this.loader = const Center(child: CircularProgressIndicator()),
     this.onError,
+    this.autofocus = false,
     this.emptyWidget = const SizedBox.shrink(),
     this.header,
     this.placeHolder,
@@ -399,6 +403,7 @@ class _SearchBarState<T> extends State<SearchBar<T>>
                           controller: _searchQueryController,
                           onChanged: _onTextChanged,
                           style: widget.textStyle,
+                          autofocus: widget.autofocus,
                           decoration: InputDecoration(
                             icon: widget.icon,
                             border: InputBorder.none,
